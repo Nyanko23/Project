@@ -1,1 +1,1 @@
-hihihihihi
+print(hihihihih)
