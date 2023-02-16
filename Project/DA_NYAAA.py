@@ -6,3 +6,5 @@ print(monthly_df)
 #getting the summary of df
 a= monthly_df.info(verbose = True)
 print(a)
+#check the df datatype
+print(monthly_df.dtypes)
