@@ -6,6 +6,13 @@ import numpy as np
 country_tourist_df = pd.read_excel("Project_File.xlsx")
 print(country_tourist_df.head())
 
+
+#changing the datatype
+for i in range(1, len(country_tourist_df.columns)):
+    col = country_tourist_df.columns[i]
+    country_tourist_df.iloc[:, i] = pd.to_numeric(country_tourist_df.iloc[:, i], errors='coerce').fillna(0).astype('Int64')
+
+
 #getting the summary of df
 a= country_tourist_df.info(verbose = True)
 print(a)
@@ -16,9 +23,6 @@ print(country_tourist_df.dtypes)
 #rename the first index
 country_tourist_df.columns.values[0] = "year_month"
 print(country_tourist_df)
-
-#changing the datatype
-
 
 
 #splitting the year and month different
