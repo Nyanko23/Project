@@ -8,6 +8,7 @@ a= country_tourist_df.info(verbose = True)
 print(a)
 #check the df datatype
 print(country_tourist_df.dtypes)
-#rename the first column
+#rename the first index
 country_tourist_df.columns.values[0] = "year_month"
 print(country_tourist_df)
+#using str.split on year_month column and store it as year, month
