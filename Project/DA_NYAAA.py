@@ -4,7 +4,7 @@ import numpy as np
 
 #reading and storing csv to dataframe
 country_tourist_df = pd.read_excel("Project_File.xlsx")
-print(country_tourist_df.head())
+print(country_tourist_df.head()) #to view first few records
 
 #getting the summary of df
 a= country_tourist_df.info(verbose = True)
