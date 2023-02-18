@@ -22,3 +22,19 @@ print(country_tourist_df.dtypes) #check the updated datatypes
 #rename the first index
 country_tourist_df.columns.values[0] = "year_month"
 print(country_tourist_df)
+
+#splitting the year and month different
+date = country_tourist_df["year_month"].str.split(' ', n = 2, expand = True)
+
+country_tourist_df["year"] = date[1]
+country_tourist_df["month"] = date[2]
+
+country_tourist_df.head()
+
+#sum
+
+
+#filter to period
+
+
+#filter (select) column in region
