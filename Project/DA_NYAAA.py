@@ -31,11 +31,18 @@ country_tourist_df["month"] = date[2]
 
 print(country_tourist_df.head())
 #sum
-country_tourist_df['Malaysia'] = country_tourist_df.sum(axis=1)
-print(country_tourist_df)
+#country_tourist_df['Malaysia'] = country_tourist_df.sum(axis=1)
+#print(country_tourist_df) Method 1
+#country_tourist_df['Sum'] = country_tourist_df.iloc[:,1:35].sum(axis=1)
+#print(country_tourist_df) Method 2
 
 
 #filter to period
+# 1978 - 1987, 1988 - 1997, 1998 - 2007, 2008 - 2017
 
+filtered_df = country_tourist_df.loc[(country_tourist_df['year'] >= '1978')
+                     & (country_tourist_df['year'] <= '1987')]
+print(filtered_df.head())
+print(filtered_df.tail()) # for 1978-1987
 
 #filter (select) column in region
