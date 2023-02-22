@@ -72,4 +72,4 @@ print(total_year_df4)
 
 #bar chart
 top_countries_bar = total_year_df1.plot(kind="bar", title = 'Population travelling in 1978 to 1987', stacked = False ,figsize=(10,10), legend =True,fontsize=12)
-pls.show()
+pls.show()#--> Top 3 countries are: Australia, USA, New Zealand
