@@ -36,17 +36,35 @@ country_df = country_tourist_df.iloc[:, 34:36]
 print(country_df)
 
 
+
 #filter to period
 # 1978 - 1987, 1988 - 1997, 1998 - 2007, 2008 - 2017
 
-filtered_df = country_df.loc[(country_df['year'] >= '1978')
+fltr_time_df1 = country_df.loc[(country_df['year'] >= '1978')
                      & (country_df['year'] <= '1987')]
-print(filtered_df)
+print(fltr_time_df1)
+
+fltr_time_df2 = country_df.loc[(country_df['year'] >= '1988')
+                     & (country_df['year'] <= '1997')]
+print(fltr_time_df2)
+
+fltr_time_df3 = country_df.loc[(country_df['year'] >= '1998')
+                     & (country_df['year'] <= '2007')]
+print(fltr_time_df3)
+
+fltr_time_df4 = country_df.loc[(country_df['year'] >= '2008')
+                     & (country_df['year'] <= '2017')]
+print(fltr_time_df4)
 
 #sum
-#country_tourist_df['Malaysia'] = country_tourist_df.sum(axis=1)
-#print(country_tourist_df) Method 1
-#country_tourist_df['Sum'] = country_tourist_df.iloc[:,1:35].sum(axis=1)
-#print(country_tourist_df) Method 2
+total_year_df1 = fltr_time_df1.groupby('year').sum()
+print(total_year_df1)
 
+total_year_df2 = fltr_time_df2.groupby('year').sum()
+print(total_year_df2)
 
+total_year_df3 = fltr_time_df3.groupby('year').sum()
+print(total_year_df3)
+
+total_year_df4 = fltr_time_df4.groupby('year').sum()
+print(total_year_df4)
