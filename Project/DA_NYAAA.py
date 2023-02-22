@@ -1,6 +1,7 @@
 #ASP Project
 import pandas as pd
 import numpy as np
+import matplotlib.pyplot as pls
 
 #reading and storing csv to dataframe
 country_tourist_df = pd.read_excel("Project_File.xlsx")
@@ -32,7 +33,7 @@ country_tourist_df["month"] = date[2]
 print(country_tourist_df.head())
 
 #filter (select) column in region
-country_df = country_tourist_df.iloc[:, 34:36]
+country_df = country_tourist_df.iloc[:, 30:36]
 print(country_df)
 
 
@@ -68,3 +69,7 @@ print(total_year_df3)
 
 total_year_df4 = fltr_time_df4.groupby('year').sum()
 print(total_year_df4)
+
+#bar chart
+top_countries_bar = total_year_df1.plot(kind="bar", title = 'Population travelling in 1978 to 1987', stacked = False ,figsize=(10,10), legend =True,fontsize=12)
+pls.show()
