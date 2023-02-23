@@ -3,6 +3,18 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as pls
 
+# put each country into separate variable names
+asia = [' Brunei Darussalam ', ' Indonesia ', ' Malaysia ',
+       ' Philippines ', ' Thailand ', ' Viet Nam ', ' Myanmar ', ' Japan ',
+       ' Hong Kong ', ' China ', ' Taiwan ', ' Korea, Republic Of ', ' India ',
+       ' Pakistan ', ' Sri Lanka ', ' Saudi Arabia ', ' Kuwait ', ' UAE ']
+
+europe = [' United Kingdom ', ' Germany ', ' France ', ' Italy ', ' Netherlands ',
+       ' Greece ', ' Belgium & Luxembourg ', ' Switzerland ', ' Austria ',
+       ' Scandinavia ', ' CIS & Eastern Europe ']
+
+other = [' USA ', ' Canada ',  ' Australia ', ' New Zealand ', ' Africa ']
+
 #reading and storing csv to dataframe
 country_tourist_df = pd.read_excel("Project_File.xlsx")
 print(country_tourist_df.head()) #view the first few records
@@ -33,43 +45,30 @@ country_tourist_df["month"] = date[2]
 print(country_tourist_df.head())
 
 #filter (select) column in region
-country_df = country_tourist_df.iloc[:, 30:36]
+other.append("year")
+country_df = country_tourist_df[other]
 print(country_df)
 
-
+#change the data type to int
+country_df = country_df.astype('int')
 
 #filter to period
-# 1978 - 1987, 1988 - 1997, 1998 - 2007, 2008 - 2017
+# 1978 - 1987
 
-fltr_time_df1 = country_df.loc[(country_df['year'] >= '1978')
+fltr_time_df = country_df.loc[(country_df['year'] >= '1978')
                      & (country_df['year'] <= '1987')]
-print(fltr_time_df1)
+print(fltr_time_df)
 
-fltr_time_df2 = country_df.loc[(country_df['year'] >= '1988')
-                     & (country_df['year'] <= '1997')]
-print(fltr_time_df2)
-
-fltr_time_df3 = country_df.loc[(country_df['year'] >= '1998')
-                     & (country_df['year'] <= '2007')]
-print(fltr_time_df3)
-
-fltr_time_df4 = country_df.loc[(country_df['year'] >= '2008')
-                     & (country_df['year'] <= '2017')]
-print(fltr_time_df4)
+#new dataframe without year column
+travel_count_df = fltr_time_df.filter([' USA ', ' Canada ',  ' Australia ', ' New Zealand ', ' Africa '], axis=1)
 
 #sum
-total_year_df1 = fltr_time_df1.groupby('year').sum()
-print(total_year_df1)
-
-total_year_df2 = fltr_time_df2.groupby('year').sum()
-print(total_year_df2)
-
-total_year_df3 = fltr_time_df3.groupby('year').sum()
-print(total_year_df3)
-
-total_year_df4 = fltr_time_df4.groupby('year').sum()
-print(total_year_df4)
+total_year_df = fltr_time_df.sum().sort_values(ascending=False)
+print(total_year_df)
 
 #bar chart
-top_countries_bar = total_year_df1.plot(kind="bar", title = 'Population travelling in 1978 to 1987', stacked = False ,figsize=(10,10), legend =True,fontsize=12)
+top_countries_bar = total_year_df.plot(kind="bar", title = 'Population travelling in 1978 to 1987', stacked = False ,figsize=(10,10),fontsize=12)
 pls.show()#--> Top 3 countries are: Australia, USA, New Zealand
+
+# print top 3 countries
+total_year_df.head(3)
