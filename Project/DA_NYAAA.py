@@ -20,8 +20,8 @@ country_tourist_df = pd.read_excel("Project_File.xlsx")
 print(country_tourist_df.head()) #view the first few records
 
 #getting the summary of df
-a= country_tourist_df.info(verbose = True)
-print(a)
+summary_df= country_tourist_df.info(verbose = True)
+print(summary_df)
 
 #check the df datatype
 print(country_tourist_df.dtypes)
@@ -51,6 +51,7 @@ print(country_df)
 
 #change the data type to int
 country_df = country_df.astype('int')
+print(country_df.dtypes)
 
 #filter to period
 # 1978 - 1987
@@ -71,4 +72,4 @@ top_countries_bar = total_year_df.plot(kind="bar", title = 'Population travellin
 pls.show()#--> Top 3 countries are: Australia, USA, New Zealand
 
 # print top 3 countries
-total_year_df.head(3)
+print(total_year_df.head(3))
