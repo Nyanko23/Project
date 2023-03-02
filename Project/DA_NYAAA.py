@@ -1,6 +1,7 @@
 #ASP Project
 import pandas as pd
 import numpy as np
+import matplotlib.pyplot as pls
 
 #reading and storing csv to dataframe
 country_tourist_df = pd.read_excel("Project_File.xlsx")
@@ -30,19 +31,45 @@ country_tourist_df["year"] = date[1]
 country_tourist_df["month"] = date[2]
 
 print(country_tourist_df.head())
-#sum
-#country_tourist_df['Malaysia'] = country_tourist_df.sum(axis=1)
-#print(country_tourist_df) Method 1
-#country_tourist_df['Sum'] = country_tourist_df.iloc[:,1:35].sum(axis=1)
-#print(country_tourist_df) Method 2
+
+#filter (select) column in region
+country_df = country_tourist_df.iloc[:, 30:36]
+print(country_df)
+
 
 
 #filter to period
 # 1978 - 1987, 1988 - 1997, 1998 - 2007, 2008 - 2017
 
-filtered_df = country_tourist_df.loc[(country_tourist_df['year'] >= '1978')
-                     & (country_tourist_df['year'] <= '1987')]
-print(filtered_df.head())
-print(filtered_df.tail()) # for 1978-1987
+fltr_time_df1 = country_df.loc[(country_df['year'] >= '1978')
+                     & (country_df['year'] <= '1987')]
+print(fltr_time_df1)
 
-#filter (select) column in region
+fltr_time_df2 = country_df.loc[(country_df['year'] >= '1988')
+                     & (country_df['year'] <= '1997')]
+print(fltr_time_df2)
+
+fltr_time_df3 = country_df.loc[(country_df['year'] >= '1998')
+                     & (country_df['year'] <= '2007')]
+print(fltr_time_df3)
+
+fltr_time_df4 = country_df.loc[(country_df['year'] >= '2008')
+                     & (country_df['year'] <= '2017')]
+print(fltr_time_df4)
+
+#sum
+total_year_df1 = fltr_time_df1.groupby('year').sum()
+print(total_year_df1)
+
+total_year_df2 = fltr_time_df2.groupby('year').sum()
+print(total_year_df2)
+
+total_year_df3 = fltr_time_df3.groupby('year').sum()
+print(total_year_df3)
+
+total_year_df4 = fltr_time_df4.groupby('year').sum()
+print(total_year_df4)
+
+#bar chart
+top_countries_bar = total_year_df1.plot(kind="bar", title = 'Population travelling in 1978 to 1987', stacked = False ,figsize=(10,10), legend =True,fontsize=12)
+pls.show()
